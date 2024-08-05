@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Brainie</title>
+    <meta name="robots" content="noindex">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <link href="css/styleBrainie.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://a.silvergames.com/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/webfont.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.55.2/phaser.min.js"></script>
+    <script type="text/javascript" src="js/game_texts.js"></script>
+</head>
+
+<body>
+    <div id="gameContainer"></div>
+    <div id="orientation"></div>
+    <audio id="background-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script defer src="js/brainie.min.js"></script>
+    <script defer src="https://www.silvergames.com/js/sg.min.js"></script>
+
+    <script type="text/javascript">
+        function loadScript(url, callback) {
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = url;
+
+            script.onload = function() {
+                callback();
+            };
+
+            document.head.appendChild(script);
+        }
+
+        function startGame() {
+    lang = "en";
+    mainFont = mainFontName[lang];
+    game = new Brainie.BrainieMain();
+
+    var startButton = document.getElementById('start');
+    if (startButton) {
+        startButton.addEventListener('click', function () {
+            document.getElementById('menu').style.display = 'none';
+            document.getElementById('mode-selection').style.display = 'flex';
+            document.getElementById('background-music').play();
+        });
+    }
+}
+
+        window.addEventListener('load', function () {
+            document.getElementById('orientation').style.display = 'none';
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            loadScript("https://cdnjs.cloudflare.com/ajax/libs/phaser/3.55.2/phaser.min.js", function() {
+                console.log("Phaser is loaded, starting the game...");
+                startGame();
+            });
+        });
+    </script>
+</body>
+</html>
